@@ -9,9 +9,13 @@
 		"userInterfaceStyle": "automatic",
 		"newArchEnabled": true,
 		"ios": {
+			"googleServicesFile": "./GoogleService-Info.plist",
+			"bundleIdentifier": "com.books.app",
 			"supportsTablet": true
 		},
 		"android": {
+			"googleServicesFile": "./google-services.json",
+			"package": "com.books.app",
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/images/adaptive-icon.png",
 				"backgroundColor": "#ffffff"
@@ -23,20 +27,15 @@
 			"favicon": "./assets/images/favicon.png"
 		},
 		"plugins": [
+			"@react-native-firebase/app",
 			"expo-router",
 			[
 				"expo-font",
 				{
 					"fonts": [
-						{
-							"asset": "./assets/fonts/NunitoSans_700.ttf"
-						},
-						{
-							"asset": "./assets/fonts/NunitoSans_600.ttf"
-						},
-						{
-							"asset": "./assets/fonts/GeorgiaItalic_700.ttf"
-						}
+						"./assets/fonts/NunitoSans_700.ttf",
+						"./assets/fonts/NunitoSans_600.ttf",
+						"./assets/fonts/GeorgiaItalic_700.ttf"
 					]
 				}
 			],
@@ -47,6 +46,14 @@
 					"imageWidth": 200,
 					"resizeMode": "contain",
 					"backgroundColor": "#ffffff"
+				}
+			],
+			[
+				"expo-build-properties",
+				{
+					"ios": {
+						"useFrameworks": "static"
+					}
 				}
 			]
 		],

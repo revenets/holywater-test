@@ -1,12 +1,18 @@
-import { useRouter } from "expo-router";
-import { Text } from "react-native";
+import { View } from "react-native";
+
+import { Button, CustomLoader, Text } from "@app/components/components";
+import { FONT_FAMILY, PALETTE } from "@app/constants/constants";
 
 export default function LoaderScreen() {
-    return (
-        <>
-            <Text style={{ marginTop: 100, fontFamily: "GeorgiaItalic_700" }}>Loading...</Text>
-            <Text style={{ marginTop: 100, fontFamily: "NunitoSans_700" }}>Test Nunito 700</Text>
-            <Text style={{ marginTop: 100, fontFamily: "NunitoSans_600" }}>Test nunito 600</Text>
-        </>
-    )
+	return (
+		<View style={{ backgroundColor: PALETTE.carbon300 }}>
+			<Text color={PALETTE.pink100} fontFamily={FONT_FAMILY.Georgia700} size="xxxl">Loading...</Text>
+			<CustomLoader barWidth={300} />
+			<Button
+				title="Go home"
+				onPress={() => {}}
+				style={{ marginTop: 20 }}
+			/>
+		</View>
+	);
 }

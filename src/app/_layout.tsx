@@ -4,16 +4,16 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
-import HomeScreen from './home';
-import BookDetailsScreen from './book-details';
+import 'react-native-gesture-handler';
+import { FONT_FAMILY } from '@app/constants/text';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    NunitoSans_700: require('@app/assets/fonts/NunitoSans_700.ttf'),
-    NunitoSans_600: require('@app/assets/fonts/NunitoSans_600.ttf'),
-	GeorgiaItalic_700: require('@app/assets/fonts/GeorgiaItalic_700.ttf'),
+    [FONT_FAMILY.Nunito600]: require('@app/assets/fonts/NunitoSans_600.ttf'),
+    [FONT_FAMILY.Nunito700]: require('@app/assets/fonts/NunitoSans_700.ttf'),
+	  [FONT_FAMILY.Georgia700]: require('@app/assets/fonts/GeorgiaItalic_700.ttf'),
   });
 
   useEffect(() => {
