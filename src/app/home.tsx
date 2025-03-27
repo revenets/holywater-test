@@ -22,10 +22,12 @@ export default function HomeScreen() {
 	const booksIds = selectBooksIdsGroupedByGenre();
 
 	const sections = useMemo(() => {
-		return Object.entries(booksIds).map(([key, value]) => ({
-			title: key,
-			data: [value],
-		}));
+		return Object.entries(booksIds)
+			.map(([key, value]) => ({
+				title: key,
+				data: [value],
+			}))
+			.filter(({ data }) => Boolean(data.length));
 	}, [booksIds]);
 
 	const renderHorizontalItemSeparator = () => <Divider isVertical />;
@@ -65,6 +67,18 @@ export default function HomeScreen() {
 		);
 	};
 
+	const renderEmptyListPlaceholder = () => {
+		return (
+			<Text
+				preset="heading"
+				color={PALETTE.carbon100}
+				style={styles.placeholderText}
+			>
+				No books available
+			</Text>
+		);
+	};
+
 	return (
 		<View style={styles.container}>
 			<StatusBar hidden />
@@ -73,6 +87,7 @@ export default function HomeScreen() {
 				sections={sections}
 				renderItem={renderSectionItem}
 				renderSectionHeader={renderSectionHeader}
+				ListEmptyComponent={renderEmptyListPlaceholder}
 				SectionSeparatorComponent={Divider}
 				stickySectionHeadersEnabled={false}
 				showsVerticalScrollIndicator={false}
@@ -90,5 +105,8 @@ const styles = StyleSheet.create({
 	},
 	sectionHeader: {
 		marginTop: 10,
+	},
+	placeholderText: {
+		marginVertical: 30,
 	},
 });
