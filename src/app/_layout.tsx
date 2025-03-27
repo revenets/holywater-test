@@ -13,7 +13,7 @@ import { PALETTE } from "@app/enums/colors";
 SplashScreen.preventAutoHideAsync();
 
 const fetchRemoteConfig = async () => {
-	await remoteConfig().fetchAndActivate();
+	await remoteConfig().fetch(300);
 };
 
 export default function RootLayout() {
@@ -56,12 +56,7 @@ export default function RootLayout() {
 						},
 					}}
 				/>
-				<Stack.Screen
-					name="book-details/[bookId]"
-					options={{
-						headerShown: false,
-					}}
-				/>
+				<Stack.Screen name="book-details/[bookId]" />
 			</Stack>
 			<StatusBar style="auto" />
 		</>

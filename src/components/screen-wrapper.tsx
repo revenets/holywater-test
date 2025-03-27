@@ -3,7 +3,7 @@ import type { Edge } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 
 import { useSafeAreaStyle } from "@app/hooks/hooks";
-import { PALETTE } from "@app/enums/enums";
+import { PALETTE } from "@app/enums";
 
 type ScreenWrapperProps = {
 	safeAreaEdges?: Edge[];

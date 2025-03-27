@@ -1,5 +1,5 @@
-import { CustomLoader, ScreenWrapper, Text } from "@app/components/components";
-import { FONT_FAMILY, PALETTE } from "@app/enums/enums";
+import { CustomLoader, ScreenWrapper, Text } from "@app/components";
+import { FONT_FAMILY, PALETTE } from "@app/enums";
 import { router, useFocusEffect } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback } from "react";
@@ -10,11 +10,7 @@ export default function LoaderScreen() {
 		useCallback(() => {
 			let timeout;
 
-			const navigateToHome = () => {
-				router.replace("/home");
-			};
-
-			timeout = setTimeout(navigateToHome, 2000);
+			timeout = setTimeout(() => router.replace("/home"), 2000);
 
 			return () => {
 				clearTimeout(timeout);

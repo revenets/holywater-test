@@ -8,7 +8,7 @@ import Animated, {
 	Easing,
 } from "react-native-reanimated";
 
-import { PALETTE } from "@app/enums/enums";
+import { PALETTE } from "@app/enums";
 
 const BAR_WIDTH = 200;
 const BAR_HEIGHT = 6;

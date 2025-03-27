@@ -1,4 +1,4 @@
-import { BOOK_GENRE } from "@app/enums/enums";
+import { BOOK_GENRE } from "@app/enums";
 import { ValueOf } from "./common";
 import { SliderItem } from "./slider";
 

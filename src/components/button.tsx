@@ -6,7 +6,7 @@ import {
 } from "react-native";
 
 import { Text } from "./text";
-import { FONT_FAMILY, PALETTE } from "@app/enums/enums";
+import { FONT_FAMILY, PALETTE } from "@app/enums";
 
 type ButtonProps = TouchableOpacityProps & {
 	title: string;

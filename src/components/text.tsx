@@ -7,8 +7,8 @@ import {
 	ColorValue,
 } from "react-native";
 
-import { FONT_FAMILY, PALETTE } from "@app/enums/enums";
-import { ValueOf } from "@app/types/types";
+import { FONT_FAMILY, PALETTE } from "@app/enums";
+import { ValueOf } from "@app/types";
 
 type Sizes = keyof typeof sizeToStyleMap;
 type Presets = "default" | "heading" | "subheading";
