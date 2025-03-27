@@ -1,14 +1,14 @@
 import { type FC, useEffect } from "react";
 import { View, StyleSheet, ViewProps } from "react-native";
 import Animated, {
-    useSharedValue,
+	useSharedValue,
 	useAnimatedStyle,
 	withTiming,
 	withRepeat,
 	Easing,
 } from "react-native-reanimated";
 
-import { PALETTE } from "@app/constants/constants";
+import { PALETTE } from "@app/enums/enums";
 
 const BAR_WIDTH = 200;
 const BAR_HEIGHT = 6;
@@ -53,13 +53,19 @@ const CustomLoader: FC<CustomLoaderProps> = ({
 	];
 	const combinedIndicatorStyles: ViewProps["style"] = [
 		styles.line,
-		{ width: indicatorWidth, height: barHeight, borderRadius: barHeight / 2 },
+		{
+			width: indicatorWidth,
+			height: barHeight,
+			borderRadius: barHeight / 2,
+		},
 	];
 
 	return (
 		<View style={style}>
 			<View style={combinedBarStyles}>
-				<Animated.View style={[combinedIndicatorStyles, animatedStyle]} />
+				<Animated.View
+					style={[combinedIndicatorStyles, animatedStyle]}
+				/>
 			</View>
 		</View>
 	);

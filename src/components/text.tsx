@@ -7,7 +7,7 @@ import {
 	ColorValue,
 } from "react-native";
 
-import { FONT_FAMILY, PALETTE } from "@app/constants/constants";
+import { FONT_FAMILY, PALETTE } from "@app/enums/enums";
 import { ValueOf } from "@app/types/types";
 
 type Sizes = keyof typeof sizeToStyleMap;
@@ -32,10 +32,10 @@ const Text: FC<TextProps> = ({
 	...props
 }) => {
 	const styles: StyleProp<TextStyle> = [
-		size && sizeToStyleMap[size],
-		color ? { color } : null,
-		fontFamily ? { fontFamily } : null,
 		presetToStyleMap[preset],
+		size && sizeToStyleMap[size],
+		fontFamily ? { fontFamily } : null,
+		color ? { color } : null,
 		styleOverride,
 	];
 

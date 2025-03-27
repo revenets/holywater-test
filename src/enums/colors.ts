@@ -8,6 +8,7 @@ const PALETTE = {
     carbon400: '#0B080F',
     
     white: '#FFFFFF',
+    screenBackground: '#101010',
 } as const;
 
 export { PALETTE };
