@@ -1,64 +1,72 @@
 {
-	"expo": {
-		"name": "books",
-		"slug": "books",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"icon": "./assets/images/icon.png",
-		"scheme": "myapp",
-		"userInterfaceStyle": "automatic",
-		"newArchEnabled": true,
-		"ios": {
-			"googleServicesFile": "./GoogleService-Info.plist",
-			"bundleIdentifier": "com.books.app",
-			"supportsTablet": true
-		},
-		"android": {
-			"googleServicesFile": "./google-services.json",
-			"package": "com.books.app",
-			"adaptiveIcon": {
-				"foregroundImage": "./assets/images/adaptive-icon.png",
-				"backgroundColor": "#ffffff"
-			}
-		},
-		"web": {
-			"bundler": "metro",
-			"output": "static",
-			"favicon": "./assets/images/favicon.png"
-		},
-		"plugins": [
-			"@react-native-firebase/app",
-			"expo-router",
-			[
-				"expo-font",
-				{
-					"fonts": [
-						"./assets/fonts/NunitoSans_700.ttf",
-						"./assets/fonts/NunitoSans_600.ttf",
-						"./assets/fonts/GeorgiaItalic_700.ttf"
-					]
-				}
-			],
-			[
-				"expo-splash-screen",
-				{
-					"image": "./assets/images/splash-icon.png",
-					"imageWidth": 200,
-					"resizeMode": "contain",
-					"backgroundColor": "#ffffff"
-				}
-			],
-			[
-				"expo-build-properties",
-				{
-					"ios": {
-						"useFrameworks": "static"
-					}
-				}
-			]
-		],
-		"experiments": {
-			"typedRoutes": true
-		}
-	}
+  "expo": {
+    "name": "books",
+    "slug": "books",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.books.app",
+      "supportsTablet": true
+    },
+    "android": {
+      "googleServicesFile": "./google-services.json",
+      "package": "com.books.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "@react-native-firebase/app",
+      "expo-router",
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/NunitoSans_700.ttf",
+            "./assets/fonts/NunitoSans_600.ttf",
+            "./assets/fonts/GeorgiaItalic_700.ttf"
+          ]
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "56f89794-7bfa-489b-af0a-00eb48412b20"
+      }
+    }
+  }
 }
