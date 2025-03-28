@@ -56,7 +56,10 @@ export default function RootLayout() {
 						},
 					}}
 				/>
-				<Stack.Screen name="book-details/[bookId]" />
+				<Stack.Screen
+					name="book-details/[bookId]"
+					options={{ headerShown: false }}
+				/>
 			</Stack>
 			<StatusBar style="auto" />
 		</>
