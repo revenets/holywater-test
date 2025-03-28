@@ -30,11 +30,9 @@ export default function RootLayout() {
 	});
 
 	useEffect(() => {
-		if (loaded) {
-			SplashScreen.hideAsync();
-			fetchRemoteConfig();
-		}
-	}, [loaded]);
+		SplashScreen.hideAsync();
+		fetchRemoteConfig();
+	}, []);
 
 	if (!loaded) {
 		return null;
