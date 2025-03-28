@@ -7,7 +7,11 @@ import "react-native-reanimated";
 import "react-native-gesture-handler";
 import remoteConfig from "@react-native-firebase/remote-config";
 import { Platform } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+	initialWindowMetrics,
+	SafeAreaProvider,
+	useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 import { FONT_FAMILY, PALETTE } from "@app/enums";
 import { Text } from "@app/components";
@@ -24,7 +28,6 @@ export default function RootLayout() {
 		[FONT_FAMILY.Nunito700]: require("@app/assets/fonts/NunitoSans_700.ttf"),
 		[FONT_FAMILY.Georgia700]: require("@app/assets/fonts/GeorgiaItalic_700.ttf"),
 	});
-	const { top } = useSafeAreaInsets();
 
 	useEffect(() => {
 		if (loaded) {
@@ -37,8 +40,14 @@ export default function RootLayout() {
 		return null;
 	}
 
+	return <RootLayoutNav />;
+}
+
+function RootLayoutNav() {
+	const { top } = useSafeAreaInsets();
+
 	return (
-		<>
+		<SafeAreaProvider initialMetrics={initialWindowMetrics}>
 			<Stack>
 				<Stack.Screen name="index" options={{ headerShown: false }} />
 				<Stack.Screen
@@ -74,6 +83,6 @@ export default function RootLayout() {
 				/>
 			</Stack>
 			<StatusBar style="inverted" />
-		</>
+		</SafeAreaProvider>
 	);
 }
