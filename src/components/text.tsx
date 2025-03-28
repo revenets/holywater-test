@@ -50,12 +50,12 @@ export { Text };
 
 const sizeToStyleMap = {
 	xxxl: { fontSize: 52, lineHeight: 60 },
-	xxl: { fontSize: 24, lineHeight: 26 },
+	xxl: { fontSize: 24, lineHeight: 28 },
 	xl: { fontSize: 20, lineHeight: 22 },
 	lg: { fontSize: 18, lineHeight: 26 },
-	md: { fontSize: 16, lineHeight: 18 },
-	sm: { fontSize: 14, lineHeight: 16 },
-	xs: { fontSize: 12, lineHeight: 14 },
+	md: { fontSize: 16, lineHeight: 20 },
+	sm: { fontSize: 14, lineHeight: 18 },
+	xs: { fontSize: 12, lineHeight: 16 },
 } as const satisfies Record<string, TextStyle>;
 
 const baseStyle: StyleProp<TextStyle> = [sizeToStyleMap.md];

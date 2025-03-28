@@ -11,8 +11,7 @@ import Carousel, {
 } from "react-native-reanimated-carousel";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { selectAllBooks } from "@app/selectors";
-import { Book } from "@app/types";
+import { selectAllBooksIds, selectBookById } from "@app/selectors";
 import { FONT_FAMILY, PALETTE } from "@app/enums";
 import { Text } from "../text";
 import { NavigationBackButton } from "./navigation-back-button";
@@ -20,43 +19,43 @@ import { NavigationBackButton } from "./navigation-back-button";
 const ITEM_WIDTH = 200;
 
 type BookDetailsSliderItemProps = {
-	bookName: string;
-	bookAuthor: string;
-	bookCover?: string;
+	bookId: number;
 };
 
-const BookDetailsSliderItem: FC<BookDetailsSliderItemProps> = ({
-	bookCover,
-	bookName,
-	bookAuthor,
-}) => (
-	<View style={styles.carouselItemContainer}>
-		<Image
-			source={{ uri: bookCover }}
-			resizeMode="cover"
-			style={styles.bookCover}
-		/>
-		<View style={styles.carouselItemTextWrapper}>
-			<Text
-				preset="heading"
-				color={PALETTE.white}
-				numberOfLines={2}
-				ellipsizeMode="tail"
-				style={styles.bookName}
-			>
-				{bookName}
-			</Text>
-			<Text
-				color={PALETTE.white}
-				size="sm"
-				fontFamily={FONT_FAMILY.Nunito700}
-				numberOfLines={2}
-			>
-				{bookAuthor}
-			</Text>
+const BookDetailsSliderItem: FC<BookDetailsSliderItemProps> = ({ bookId }) => {
+	const book = selectBookById(bookId);
+
+	const { cover_url, author, name } = book ?? {};
+
+	return (
+		<View style={styles.carouselItemContainer}>
+			<Image
+				source={{ uri: cover_url }}
+				resizeMode="cover"
+				style={styles.bookCover}
+			/>
+			<View style={styles.carouselItemTextWrapper}>
+				<Text
+					preset="heading"
+					color={PALETTE.white}
+					numberOfLines={2}
+					ellipsizeMode="tail"
+					style={styles.bookName}
+				>
+					{name}
+				</Text>
+				<Text
+					color={PALETTE.white}
+					size="sm"
+					fontFamily={FONT_FAMILY.Nunito700}
+					numberOfLines={2}
+				>
+					{author}
+				</Text>
+			</View>
 		</View>
-	</View>
-);
+	);
+};
 
 type BookDetailsStackSliderProps = {
 	currentBookId: number | string;
@@ -69,35 +68,28 @@ const BookDetailsStackSlider: FC<BookDetailsStackSliderProps> = ({
 	onBookChange,
 	onBookLoading,
 }) => {
-	const books = selectAllBooks();
+	const bookIds = selectAllBooksIds();
 	const { width: SCREEN_WIDTH } = useWindowDimensions();
 	const { top } = useSafeAreaInsets();
 
 	const defaultIndex = useMemo(() => {
-		return books.findIndex((book) => book.id === currentBookId);
-	}, [books, currentBookId]);
+		return bookIds.findIndex((id) => id === currentBookId);
+	}, [bookIds, currentBookId]);
 
-	const handleRenderCarouselItem: CarouselRenderItem<Book> = ({ item }) => {
-		return (
-			<BookDetailsSliderItem
-				bookAuthor={item.author}
-				bookName={item.name}
-				bookCover={item.cover_url}
-			/>
-		);
+	const handleRenderCarouselItem: CarouselRenderItem<number> = ({ item }) => {
+		return <BookDetailsSliderItem bookId={item} />;
 	};
 
 	const handleSnapToBook = useCallback(
 		(newIndex: number) => {
-			onBookLoading?.(true);
+			const bookIdByIndex = bookIds.find(
+				(_, index) => index === newIndex
+			);
+			if (!bookIdByIndex) return;
 
-			const bookByIndex = books.find((_, index) => index === newIndex);
-			if (!bookByIndex) return;
-
-			onBookLoading?.(false);
-			onBookChange?.(bookByIndex.id);
+			onBookChange?.(bookIdByIndex);
 		},
-		[books, onBookChange, onBookLoading]
+		[bookIds, onBookChange]
 	);
 
 	const handleScrollStart = () => onBookLoading?.(true);
@@ -112,7 +104,7 @@ const BookDetailsStackSlider: FC<BookDetailsStackSliderProps> = ({
 			/>
 			<NavigationBackButton style={styles.backButton} />
 			<Carousel
-				data={books}
+				data={bookIds}
 				width={SCREEN_WIDTH}
 				height={300}
 				pagingEnabled={true}

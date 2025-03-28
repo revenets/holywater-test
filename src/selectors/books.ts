@@ -15,6 +15,10 @@ const selectAllBooks = () => {
 	return booksDto.books;
 };
 
+const selectAllBooksIds = () => {
+	return selectAllBooks().map(({ id }) => id);
+}
+
 const selectBookById = (id: number) =>
 	getBooksData().books.find((book) => book.id === id);
 const selectSliderItems = () => getBooksData().top_banner_slides;
@@ -43,4 +47,5 @@ export {
 	selectSliderItems,
 	selectYouWillLikeSectionBooks,
 	selectBooksIdsGroupedByGenre,
+	selectAllBooksIds,
 };

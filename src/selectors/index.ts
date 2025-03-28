@@ -3,5 +3,6 @@ export {
 	selectBookById,
 	selectSliderItems,
 	selectYouWillLikeSectionBooks,
-	selectBooksIdsGroupedByGenre
+	selectBooksIdsGroupedByGenre,
+	selectAllBooksIds,
 } from "./books";

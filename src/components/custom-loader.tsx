@@ -1,5 +1,10 @@
 import { type FC, useEffect } from "react";
-import { View, StyleSheet, ViewProps } from "react-native";
+import {
+	View,
+	StyleSheet,
+	type ViewProps,
+	type ColorValue,
+} from "react-native";
 import Animated, {
 	useSharedValue,
 	useAnimatedStyle,
@@ -14,19 +19,24 @@ const BAR_WIDTH = 200;
 const BAR_HEIGHT = 6;
 const INDICATOR_WIDTH = 50;
 const DURATION = 1500;
+const DEFAULT_BAR_COLOR = "rgba(255, 255, 255, 0.2)";
 
 type CustomLoaderProps = {
+	barColor?: ColorValue;
 	barWidth?: number;
 	barHeight?: number;
+	indicatorColor?: ColorValue;
 	indicatorWidth?: number;
 	duration?: number;
 	style?: ViewProps["style"];
 };
 
 const CustomLoader: FC<CustomLoaderProps> = ({
+	barColor = DEFAULT_BAR_COLOR,
 	barHeight = BAR_HEIGHT,
 	barWidth = BAR_WIDTH,
 	duration = DURATION,
+	indicatorColor = PALETTE.white,
 	indicatorWidth = INDICATOR_WIDTH,
 	style,
 }) => {
@@ -49,7 +59,12 @@ const CustomLoader: FC<CustomLoaderProps> = ({
 
 	const combinedBarStyles: ViewProps["style"] = [
 		styles.bar,
-		{ width: barWidth, height: barHeight, borderRadius: barHeight / 2 },
+		{
+			width: barWidth,
+			height: barHeight,
+			borderRadius: barHeight / 2,
+			backgroundColor: barColor,
+		},
 	];
 	const combinedIndicatorStyles: ViewProps["style"] = [
 		styles.line,
@@ -57,6 +72,7 @@ const CustomLoader: FC<CustomLoaderProps> = ({
 			width: indicatorWidth,
 			height: barHeight,
 			borderRadius: barHeight / 2,
+			backgroundColor: indicatorColor,
 		},
 	];
 
@@ -73,11 +89,9 @@ const CustomLoader: FC<CustomLoaderProps> = ({
 
 const styles = StyleSheet.create({
 	bar: {
-		backgroundColor: "rgba(255, 255, 255, 0.2)",
 		overflow: "hidden",
 	},
 	line: {
-		backgroundColor: PALETTE.white,
 		position: "absolute",
 	},
 });

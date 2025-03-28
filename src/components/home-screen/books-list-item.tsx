@@ -1,15 +1,16 @@
 import { selectBookById } from "@app/selectors";
 import { FC, memo, useCallback } from "react";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { ColorValue, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Text } from "../text";
 import { PALETTE } from "@app/enums";
 import { router } from "expo-router";
 
 type BooksListItemProps = {
 	bookId: number | string;
+	bookNameColor?: ColorValue;
 };
 
-const _BooksListItem: FC<BooksListItemProps> = ({ bookId }) => {
+const _BooksListItem: FC<BooksListItemProps> = ({ bookId, bookNameColor = PALETTE.carbon200 }) => {
 	const book = selectBookById(Number(bookId));
 	const { name, cover_url } = book ?? {};
 
@@ -28,7 +29,7 @@ const _BooksListItem: FC<BooksListItemProps> = ({ bookId }) => {
 				style={styles.bookCover}
 			/>
 			<Text
-				color={PALETTE.carbon200}
+				color={bookNameColor}
 				style={styles.bookName}
 				numberOfLines={2}
 				ellipsizeMode="tail"
