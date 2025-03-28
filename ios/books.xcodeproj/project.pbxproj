@@ -7,41 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06AA10654277EEC3F3106515 /* Pods_books.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF1F6539DA493B775A37FE40 /* Pods_books.framework */; };
+		100A9D1AF7B240E6A42DE3B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 111C1AE63C004626A38248FA /* GoogleService-Info.plist */; };
+		1266847AB954474080DAAFD3 /* NunitoSans_700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1F9A64AFAF1F4C5B8A69BBF4 /* NunitoSans_700.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1825DAAEDBD402A1B1900F4A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = ED24440222CC0C8190C63FCC /* PrivacyInfo.xcprivacy */; };
-		2325E76806B848CB915071AA /* NunitoSans_600.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB0070CE0BC84E70B6C0D563 /* NunitoSans_600.ttf */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		7B003446FA7B41608CFCF45A /* NunitoSans_700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 072842C6D89B4F8881F43B5B /* NunitoSans_700.ttf */; };
-		8B1BF1BEE6134413BAF48B18 /* GeorgiaItalic_700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFE99313798447608694E588 /* GeorgiaItalic_700.ttf */; };
+		4A564E1794F44DEB9F4472B2 /* GeorgiaItalic_700.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E53F59CDCC104805B68C7CA2 /* GeorgiaItalic_700.ttf */; };
+		7DED9672182D4F63976C58CD /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1272CA8E3AFD42A3B516BDDB /* noop-file.swift */; };
+		AAB820F8F495ADA729C0245A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 2F6B0CF21137E1E6F331B0A0 /* PrivacyInfo.xcprivacy */; };
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		E4E6F16A0E2C4726ACB3DFAE /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A6C0E13F5E342DF90B84A6C /* noop-file.swift */; };
-		E6EC1CFEA4A849F3A9B9DE81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E866FF66F256471A841B9B95 /* GoogleService-Info.plist */; };
+		E2CA5DDF5ECC4C769D0D3BAA /* NunitoSans_600.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 506F36EEDDE34ABE9128505C /* NunitoSans_600.ttf */; };
+		E4E1AAFD17D2467EA2C26E41 /* Pods_books.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A631C7DC647BA51F58E5E66 /* Pods_books.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		072842C6D89B4F8881F43B5B /* NunitoSans_700.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = NunitoSans_700.ttf; path = ../assets/fonts/NunitoSans_700.ttf; sourceTree = "<group>"; };
-		086B556BF54D45B1B1D83CA3 /* books-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "books-Bridging-Header.h"; path = "books/books-Bridging-Header.h"; sourceTree = "<group>"; };
+		05F906EDDCE0401694B2FD50 /* books-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "books-Bridging-Header.h"; path = "books/books-Bridging-Header.h"; sourceTree = "<group>"; };
+		111C1AE63C004626A38248FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "books/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1272CA8E3AFD42A3B516BDDB /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "books/noop-file.swift"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* books.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = books.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = books/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = books/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = books/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = books/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = books/main.m; sourceTree = "<group>"; };
-		6A6C0E13F5E342DF90B84A6C /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "books/noop-file.swift"; sourceTree = "<group>"; };
+		1F9A64AFAF1F4C5B8A69BBF4 /* NunitoSans_700.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = NunitoSans_700.ttf; path = ../assets/fonts/NunitoSans_700.ttf; sourceTree = "<group>"; };
+		2F6B0CF21137E1E6F331B0A0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = books/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		3A631C7DC647BA51F58E5E66 /* Pods_books.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_books.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		506F36EEDDE34ABE9128505C /* NunitoSans_600.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = NunitoSans_600.ttf; path = ../assets/fonts/NunitoSans_600.ttf; sourceTree = "<group>"; };
 		6C2E3173556A471DD304B334 /* Pods-books.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-books.debug.xcconfig"; path = "Target Support Files/Pods-books/Pods-books.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-books.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-books.release.xcconfig"; path = "Target Support Files/Pods-books/Pods-books.release.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = books/SplashScreen.storyboard; sourceTree = "<group>"; };
-		BB0070CE0BC84E70B6C0D563 /* NunitoSans_600.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = NunitoSans_600.ttf; path = ../assets/fonts/NunitoSans_600.ttf; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		BFE99313798447608694E588 /* GeorgiaItalic_700.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = GeorgiaItalic_700.ttf; path = ../assets/fonts/GeorgiaItalic_700.ttf; sourceTree = "<group>"; };
-		E866FF66F256471A841B9B95 /* GoogleService-Info.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "books/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		ED24440222CC0C8190C63FCC /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = books/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		E53F59CDCC104805B68C7CA2 /* GeorgiaItalic_700.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = GeorgiaItalic_700.ttf; path = ../assets/fonts/GeorgiaItalic_700.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		EF1F6539DA493B775A37FE40 /* Pods_books.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_books.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-books/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,24 +50,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06AA10654277EEC3F3106515 /* Pods_books.framework in Frameworks */,
+				E4E1AAFD17D2467EA2C26E41 /* Pods_books.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1101CDD1B9BE44C890D8714B /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				072842C6D89B4F8881F43B5B /* NunitoSans_700.ttf */,
-				BB0070CE0BC84E70B6C0D563 /* NunitoSans_600.ttf */,
-				BFE99313798447608694E588 /* GeorgiaItalic_700.ttf */,
-			);
-			name = Resources;
-			path = "";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* books */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,10 +67,10 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				E866FF66F256471A841B9B95 /* GoogleService-Info.plist */,
-				6A6C0E13F5E342DF90B84A6C /* noop-file.swift */,
-				086B556BF54D45B1B1D83CA3 /* books-Bridging-Header.h */,
-				ED24440222CC0C8190C63FCC /* PrivacyInfo.xcprivacy */,
+				111C1AE63C004626A38248FA /* GoogleService-Info.plist */,
+				1272CA8E3AFD42A3B516BDDB /* noop-file.swift */,
+				05F906EDDCE0401694B2FD50 /* books-Bridging-Header.h */,
+				2F6B0CF21137E1E6F331B0A0 /* PrivacyInfo.xcprivacy */,
 			);
 			name = books;
 			sourceTree = "<group>";
@@ -90,7 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				EF1F6539DA493B775A37FE40 /* Pods_books.framework */,
+				3A631C7DC647BA51F58E5E66 /* Pods_books.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -111,7 +100,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
 				D7E4C46ADA2E9064B798F356 /* ExpoModulesProviders */,
-				1101CDD1B9BE44C890D8714B /* Resources */,
+				CC6FD4C00B11459F9BD0F087 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -143,6 +132,17 @@
 			path = books/Supporting;
 			sourceTree = "<group>";
 		};
+		CC6FD4C00B11459F9BD0F087 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1F9A64AFAF1F4C5B8A69BBF4 /* NunitoSans_700.ttf */,
+				506F36EEDDE34ABE9128505C /* NunitoSans_600.ttf */,
+				E53F59CDCC104805B68C7CA2 /* GeorgiaItalic_700.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		D65327D7A22EEC0BE12398D9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,14 +168,14 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "books" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				FDFC10542BE14EC57C9AD584 /* [Expo] Configure project */,
+				812486ADEDD853021C9D42FF /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				110D68EDD4B5734AB45A46C4 /* [CP] Embed Pods Frameworks */,
-				7FA55825938268C204815E48 /* [CP-User] [RNFB] Core Configuration */,
+				BDB0661379BC6E3C40AB9832 /* [CP] Embed Pods Frameworks */,
+				13E0054A3FEA91C6F05297CD /* [CP-User] [RNFB] Core Configuration */,
 			);
 			buildRules = (
 			);
@@ -225,11 +225,11 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				E6EC1CFEA4A849F3A9B9DE81 /* GoogleService-Info.plist in Resources */,
-				7B003446FA7B41608CFCF45A /* NunitoSans_700.ttf in Resources */,
-				2325E76806B848CB915071AA /* NunitoSans_600.ttf in Resources */,
-				8B1BF1BEE6134413BAF48B18 /* GeorgiaItalic_700.ttf in Resources */,
-				1825DAAEDBD402A1B1900F4A /* PrivacyInfo.xcprivacy in Resources */,
+				100A9D1AF7B240E6A42DE3B7 /* GoogleService-Info.plist in Resources */,
+				1266847AB954474080DAAFD3 /* NunitoSans_700.ttf in Resources */,
+				E2CA5DDF5ECC4C769D0D3BAA /* NunitoSans_600.ttf in Resources */,
+				4A564E1794F44DEB9F4472B2 /* GeorgiaItalic_700.ttf in Resources */,
+				AAB820F8F495ADA729C0245A /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,25 +273,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		110D68EDD4B5734AB45A46C4 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-books/Pods-books-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-books/Pods-books-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7FA55825938268C204815E48 /* [CP-User] [RNFB] Core Configuration */ = {
+		13E0054A3FEA91C6F05297CD /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -352,7 +334,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-books/Pods-books-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FDFC10542BE14EC57C9AD584 /* [Expo] Configure project */ = {
+		812486ADEDD853021C9D42FF /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -371,6 +353,24 @@
 			shellPath = /bin/sh;
 			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-books/expo-configure-project.sh\"\n";
 		};
+		BDB0661379BC6E3C40AB9832 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-books/Pods-books-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-books/Pods-books-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -381,7 +381,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
-				E4E6F16A0E2C4726ACB3DFAE /* noop-file.swift in Sources */,
+				7DED9672182D4F63976C58CD /* noop-file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
