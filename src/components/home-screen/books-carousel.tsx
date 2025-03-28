@@ -23,6 +23,7 @@ const DEFAULT_SCREEN_PADDING = 16;
 
 const WIDTH = Dimensions.get("window").width;
 const HEIGHT = WIDTH / 2.2;
+const PROGRESS_BAR_SIZE = 7;
 
 type BooksCarouselItemProps = {
 	bookId: number | string;
@@ -111,8 +112,8 @@ const BooksCarousel: FC = () => {
 				activeDotStyle={{
 					backgroundColor: PALETTE.pink100,
 				}}
-				size={7}
-				containerStyle={{ gap: 10, marginTop: 10 }}
+				size={PROGRESS_BAR_SIZE}
+				containerStyle={{ gap: 10, marginTop: -2 * PROGRESS_BAR_SIZE }}
 			/>
 		</View>
 	);
@@ -140,6 +141,6 @@ const styles = StyleSheet.create({
 		padding: 8,
 	},
 	bookNameText: {
-		flex: 1
-	}
+		flex: 1,
+	},
 });

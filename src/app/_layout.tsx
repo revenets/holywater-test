@@ -5,15 +5,17 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import "react-native-gesture-handler";
-import { FONT_FAMILY } from "@app/enums/text";
 import remoteConfig from "@react-native-firebase/remote-config";
-import { Text } from "@app/components/text";
-import { PALETTE } from "@app/enums/colors";
+import { Platform } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import { FONT_FAMILY, PALETTE } from "@app/enums";
+import { Text } from "@app/components";
 
 SplashScreen.preventAutoHideAsync();
 
 const fetchRemoteConfig = async () => {
-	await remoteConfig().fetch(300);
+	await remoteConfig().fetchAndActivate();
 };
 
 export default function RootLayout() {
@@ -22,6 +24,7 @@ export default function RootLayout() {
 		[FONT_FAMILY.Nunito700]: require("@app/assets/fonts/NunitoSans_700.ttf"),
 		[FONT_FAMILY.Georgia700]: require("@app/assets/fonts/GeorgiaItalic_700.ttf"),
 	});
+	const { top } = useSafeAreaInsets();
 
 	useEffect(() => {
 		if (loaded) {
@@ -43,7 +46,16 @@ export default function RootLayout() {
 					options={{
 						headerBackVisible: false,
 						headerLeft: () => (
-							<Text color={PALETTE.pink200} preset="heading">
+							<Text
+								color={PALETTE.pink200}
+								preset="heading"
+								style={{
+									marginTop:
+										Platform.OS === "android"
+											? top
+											: undefined,
+								}}
+							>
 								Library
 							</Text>
 						),
@@ -61,7 +73,7 @@ export default function RootLayout() {
 					options={{ headerShown: false }}
 				/>
 			</Stack>
-			<StatusBar style="auto" />
+			<StatusBar style="inverted" />
 		</>
 	);
 }
