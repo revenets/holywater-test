@@ -5,7 +5,8 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import "react-native-gesture-handler";
-import remoteConfig from "@react-native-firebase/remote-config";
+import remoteConfig from '@react-native-firebase/remote-config';
+
 import { Platform } from "react-native";
 import {
 	initialWindowMetrics,
@@ -18,9 +19,7 @@ import { Text } from "@app/components";
 
 SplashScreen.preventAutoHideAsync();
 
-const fetchRemoteConfig = async () => {
-	await remoteConfig().fetchAndActivate();
-};
+remoteConfig().fetchAndActivate();
 
 export default function RootLayout() {
 	const [loaded] = useFonts({
@@ -28,21 +27,15 @@ export default function RootLayout() {
 		[FONT_FAMILY.Nunito700]: require("@app/assets/fonts/NunitoSans_700.ttf"),
 		[FONT_FAMILY.Georgia700]: require("@app/assets/fonts/GeorgiaItalic_700.ttf"),
 	});
+	const { top } = useSafeAreaInsets();
 
 	useEffect(() => {
 		SplashScreen.hideAsync();
-		fetchRemoteConfig();
 	}, []);
 
 	if (!loaded) {
 		return null;
 	}
-
-	return <RootLayoutNav />;
-}
-
-function RootLayoutNav() {
-	const { top } = useSafeAreaInsets();
 
 	return (
 		<SafeAreaProvider initialMetrics={initialWindowMetrics}>

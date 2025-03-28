@@ -76,6 +76,7 @@ const BookDetailsInfoContainer: FC<BookDetailsInfoContainerProps> = ({
 				<ScrollView
 					nestedScrollEnabled={true}
 					contentContainerStyle={styles.container}
+					showsVerticalScrollIndicator={false}
 				>
 					<View style={styles.info}>
 						{infoConfig.map(({ title, value }) => (
