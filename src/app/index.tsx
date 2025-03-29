@@ -1,22 +1,28 @@
-import { CustomLoader, ScreenWrapper, Text } from "@app/components";
-import { FONT_FAMILY, PALETTE } from "@app/enums";
-import { router, useFocusEffect } from "expo-router";
+import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useCallback } from "react";
+import { useEffect } from "react";
 import { ImageBackground, StyleSheet, View } from "react-native";
 
+import { CustomLoader, ScreenWrapper, Text } from "@app/components";
+import { FONT_FAMILY, PALETTE } from "@app/enums";
+import { useRemoteConfig } from "@app/hooks/hooks";
+
 export default function LoaderScreen() {
-	useFocusEffect(
-		useCallback(() => {
-			let timeout;
+	const { loading } = useRemoteConfig();
 
-			timeout = setTimeout(() => router.replace("/home"), 2000);
+	useEffect(() => {
+		if (loading) {
+			return;
+		}
 
-			return () => {
-				clearTimeout(timeout);
-			};
-		}, [])
-	);
+		let timeout;
+
+		timeout = setTimeout(() => router.replace("/home"), 2000);
+
+		return () => {
+			clearTimeout(timeout);
+		};
+	}, [loading]);
 
 	return (
 		<ScreenWrapper

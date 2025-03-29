@@ -1,28 +1,31 @@
-import { selectBookById } from "@app/selectors";
-import { FC, memo, useCallback } from "react";
+import { FC } from "react";
 import { ColorValue, Image, StyleSheet, TouchableOpacity } from "react-native";
+
 import { Text } from "../text";
 import { PALETTE } from "@app/enums";
-import { router } from "expo-router";
+import { useBooksStore } from "@app/store";
 
 type BooksListItemProps = {
 	bookId: number | string;
 	bookNameColor?: ColorValue;
+	onPress?: () => void;
 };
 
-const _BooksListItem: FC<BooksListItemProps> = ({ bookId, bookNameColor = PALETTE.carbon200 }) => {
-	const book = selectBookById(Number(bookId));
+const BooksListItem: FC<BooksListItemProps> = ({
+	bookId,
+	bookNameColor = PALETTE.carbon200,
+	onPress,
+}) => {
+	const { allBooks } = useBooksStore();
+	const book = allBooks.find((book) => book.id === Number(bookId));
 	const { name, cover_url } = book ?? {};
 
-	const handleOnPress = useCallback(() => {
-		router.navigate({
-			pathname: "/book-details/[bookId]",
-			params: { bookId },
-		});
-	}, [bookId]);
+	if (!book) {
+		return null;
+	}
 
 	return (
-		<TouchableOpacity onPress={handleOnPress} style={styles.container}>
+		<TouchableOpacity onPress={onPress} style={styles.container}>
 			<Image
 				source={{ uri: cover_url }}
 				resizeMode="cover"
@@ -40,17 +43,15 @@ const _BooksListItem: FC<BooksListItemProps> = ({ bookId, bookNameColor = PALETT
 	);
 };
 
-const BooksListItem = memo(_BooksListItem);
-
 const styles = StyleSheet.create({
 	container: {
 		width: 120,
-        rowGap: 10,
+		rowGap: 10,
 	},
 	bookCover: {
-		width: '100%',
+		width: "100%",
 		aspectRatio: 0.75,
-        borderRadius: 16,
+		borderRadius: 16,
 	},
 	bookName: {
 		flex: 1,

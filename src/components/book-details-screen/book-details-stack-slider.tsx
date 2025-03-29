@@ -11,10 +11,10 @@ import Carousel, {
 } from "react-native-reanimated-carousel";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { selectAllBooksIds, selectBookById } from "@app/selectors";
 import { FONT_FAMILY, PALETTE } from "@app/enums";
 import { Text } from "../text";
 import { NavigationBackButton } from "./navigation-back-button";
+import { useBooksStore } from "@app/store";
 
 const ITEM_WIDTH = 200;
 
@@ -23,7 +23,8 @@ type BookDetailsSliderItemProps = {
 };
 
 const BookDetailsSliderItem: FC<BookDetailsSliderItemProps> = ({ bookId }) => {
-	const book = selectBookById(bookId);
+	const { allBooks } = useBooksStore();
+	const book = allBooks.find((book) => book.id === bookId);
 
 	const { cover_url, author, name } = book ?? {};
 
@@ -68,7 +69,8 @@ const BookDetailsStackSlider: FC<BookDetailsStackSliderProps> = ({
 	onBookChange,
 	onBookLoading,
 }) => {
-	const bookIds = selectAllBooksIds();
+	const { allBooks } = useBooksStore();
+	const bookIds = allBooks.map(({ id }) => id);
 	const { width: SCREEN_WIDTH } = useWindowDimensions();
 	const { top } = useSafeAreaInsets();
 

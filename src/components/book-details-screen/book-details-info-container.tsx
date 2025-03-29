@@ -8,7 +8,6 @@ import {
 } from "react-native";
 
 import { FONT_FAMILY, PALETTE } from "@app/enums";
-import { selectBookById } from "@app/selectors";
 import { Text } from "../text";
 import { Line } from "../line";
 import { Divider } from "../divider";
@@ -16,19 +15,21 @@ import { BooksListItem } from "../home-screen";
 import { ScreenWrapper } from "../screen-wrapper";
 import { Button } from "../button";
 import { CustomLoader } from "../custom-loader";
+import { useBooksStore } from "@app/store";
 
 type BookDetailsInfoContainerProps = {
 	bookId: number;
 	isLoading?: boolean;
-	suggestedBooksIds?: number[];
+	recommendedBookIds?: number[];
 };
 
 const BookDetailsInfoContainer: FC<BookDetailsInfoContainerProps> = ({
 	bookId,
 	isLoading = false,
-	suggestedBooksIds = [],
+	recommendedBookIds = [],
 }) => {
-	const book = selectBookById(bookId);
+	const { allBooks } = useBooksStore();
+	const book = allBooks.find((book) => book.id === bookId);
 
 	const { genre, likes, quotes, views, summary } = book ?? {};
 
@@ -55,10 +56,18 @@ const BookDetailsInfoContainer: FC<BookDetailsInfoContainerProps> = ({
 
 	const renderHorizontalListItem = useCallback(
 		({ item }: ListRenderItemInfo<number>) => (
-			<BooksListItem key={item} bookId={item} bookNameColor={PALETTE.carbon400} />
+			<BooksListItem
+				key={item}
+				bookId={item}
+				bookNameColor={PALETTE.carbon400}
+			/>
 		),
 		[]
 	);
+
+	if (!book) {
+		return null;
+	}
 
 	return (
 		<ScreenWrapper
@@ -103,7 +112,7 @@ const BookDetailsInfoContainer: FC<BookDetailsInfoContainerProps> = ({
 						You will also like
 					</Text>
 					<FlatList
-						data={suggestedBooksIds}
+						data={recommendedBookIds}
 						renderItem={renderHorizontalListItem}
 						ItemSeparatorComponent={renderHorizontalItemSeparator}
 						showsHorizontalScrollIndicator={false}
@@ -126,7 +135,6 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-around",
-		columnGap: 10,
 	},
 	infoItem: {
 		flex: 1,

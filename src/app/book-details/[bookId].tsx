@@ -5,11 +5,11 @@ import {
 	BookDetailsInfoContainer,
 	BookDetailsStackSlider,
 } from "@app/components/book-details-screen";
-import { selectYouWillLikeSectionBooks } from "@app/selectors";
+import { useBooksStore } from "@app/store";
 
 export default function BookDetailsScreen() {
 	const { bookId: _routeBookId } = useLocalSearchParams();
-	const suggestedBooksIds = selectYouWillLikeSectionBooks();
+	const { recommendedBookIds } = useBooksStore();
 
 	const [bookId, setBookId] = useState<number>(Number(_routeBookId));
 	const [isDataLoading, setIsDataLoading] = useState<boolean>(false);
@@ -24,7 +24,7 @@ export default function BookDetailsScreen() {
 			<BookDetailsInfoContainer
 				bookId={bookId}
 				isLoading={isDataLoading}
-				suggestedBooksIds={suggestedBooksIds}
+				recommendedBookIds={recommendedBookIds}
 			/>
 		</>
 	);

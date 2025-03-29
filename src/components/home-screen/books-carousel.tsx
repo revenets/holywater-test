@@ -14,10 +14,10 @@ import Carousel, {
 } from "react-native-reanimated-carousel";
 
 import { PALETTE } from "@app/enums/colors";
-import { selectBookById, selectSliderItems } from "@app/selectors/books";
 import { Text } from "../text";
-import { SliderItem } from "@app/types";
+import { Book, SliderItem } from "@app/types";
 import { FONT_FAMILY } from "@app/enums";
+import { useBooksStore } from "@app/store";
 
 const DEFAULT_SCREEN_PADDING = 16;
 
@@ -25,67 +25,76 @@ const WIDTH = Dimensions.get("window").width;
 const HEIGHT = WIDTH / 2.2;
 const PROGRESS_BAR_SIZE = 7;
 
+type SliderItemExtended = SliderItem & Pick<Book, "author" | "name">;
+
 type BooksCarouselItemProps = {
-	bookId: number | string;
-	bookCover: string;
+	book: SliderItemExtended;
 	onPress?: () => void;
 };
 
-const BookCarouselItem: FC<BooksCarouselItemProps> = ({
-	bookId,
-	bookCover,
-	onPress,
-}) => {
-	const bookData = selectBookById(Number(bookId));
-	const { author, name } = bookData ?? {};
+const BookCarouselItem: FC<BooksCarouselItemProps> = ({ book, onPress }) => {
+	const { author, name, cover, book_id: bookId } = book ?? {};
 
-	if (!bookCover || !bookId) {
+	if (!cover || !bookId) {
 		return null;
 	}
 
 	return (
 		<TouchableOpacity style={styles.cardBookItem} onPress={onPress}>
 			<ImageBackground
-				source={{ uri: bookCover }}
+				source={{ uri: cover }}
 				resizeMode="cover"
 				style={StyleSheet.absoluteFillObject}
 			/>
-			<View style={styles.cardBookInfoWrapper}>
-				<Text
-					color={PALETTE.white}
-					size="lg"
-					fontFamily={FONT_FAMILY.Nunito700}
-					style={styles.bookNameText}
-					numberOfLines={1}
-					ellipsizeMode="tail"
-				>
-					{name}
-				</Text>
-				<Text color={PALETTE.white}>{author}</Text>
-			</View>
+			{!!name && !!author && (
+				<View style={styles.cardBookInfoWrapper}>
+					<Text
+						color={PALETTE.white}
+						size="lg"
+						fontFamily={FONT_FAMILY.Nunito700}
+						style={styles.bookNameText}
+						numberOfLines={1}
+						ellipsizeMode="tail"
+					>
+						{name}
+					</Text>
+					<Text color={PALETTE.white}>{author}</Text>
+				</View>
+			)}
 		</TouchableOpacity>
 	);
 };
 
 const BooksCarousel: FC = () => {
 	const progress = useSharedValue<number>(0);
-	const data = selectSliderItems();
+	const { allBooks, sliderBooks } = useBooksStore();
 
-	const handleItemPress = (bookId: number) => () => {
+	const carouselData: SliderItemExtended[] = sliderBooks.map((item) => {
+		const correspondingBook = allBooks.find(
+			(book) => book.id === item.book_id
+		);
+
+		return {
+			...item,
+			author: correspondingBook?.author ?? "",
+			name: correspondingBook?.name ?? "",
+		};
+	});
+
+	const handleItemPress = (bookId: number) => {
 		router.navigate({
 			pathname: "/book-details/[bookId]",
 			params: { bookId },
 		});
 	};
 
-	const handleRenderCarouselItem: CarouselRenderItem<SliderItem> = ({
+	const handleRenderCarouselItem: CarouselRenderItem<SliderItemExtended> = ({
 		item,
 	}) => {
 		return (
 			<BookCarouselItem
-				bookCover={item.cover}
-				bookId={item.book_id}
-				onPress={handleItemPress(item.book_id)}
+				book={item}
+				onPress={() => handleItemPress(item.book_id)}
 			/>
 		);
 	};
@@ -95,7 +104,7 @@ const BooksCarousel: FC = () => {
 			<Carousel
 				width={WIDTH}
 				height={HEIGHT}
-				data={data}
+				data={carouselData}
 				onProgressChange={progress}
 				renderItem={handleRenderCarouselItem}
 				autoPlay
@@ -104,7 +113,7 @@ const BooksCarousel: FC = () => {
 
 			<Pagination.Basic
 				progress={progress}
-				data={data}
+				data={carouselData}
 				dotStyle={{
 					backgroundColor: PALETTE.carbon50,
 					borderRadius: 50,

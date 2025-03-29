@@ -5,7 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
 import "react-native-gesture-handler";
-import remoteConfig from '@react-native-firebase/remote-config';
+import remoteConfig from "@react-native-firebase/remote-config";
 
 import { Platform } from "react-native";
 import {
@@ -16,6 +16,7 @@ import {
 
 import { FONT_FAMILY, PALETTE } from "@app/enums";
 import { Text } from "@app/components";
+import { useRemoteConfig } from "@app/hooks/use-remote-config.hook";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,6 +29,7 @@ export default function RootLayout() {
 		[FONT_FAMILY.Georgia700]: require("@app/assets/fonts/GeorgiaItalic_700.ttf"),
 	});
 	const { top } = useSafeAreaInsets();
+	useRemoteConfig();
 
 	useEffect(() => {
 		SplashScreen.hideAsync();
