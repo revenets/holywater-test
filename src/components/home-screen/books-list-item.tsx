@@ -25,7 +25,11 @@ const BooksListItem: FC<BooksListItemProps> = ({
 	}
 
 	return (
-		<TouchableOpacity onPress={onPress} style={styles.container}>
+		<TouchableOpacity
+			onPress={onPress}
+			style={styles.container}
+			disabled={typeof onPress !== "function"}
+		>
 			<Image
 				source={{ uri: cover_url }}
 				resizeMode="cover"

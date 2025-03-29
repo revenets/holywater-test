@@ -102,15 +102,17 @@ const BookDetailsInfoContainer: FC<BookDetailsInfoContainerProps> = ({
 							</View>
 						))}
 					</View>
-					<Line style={styles.lineSeparator} />
-					<Text preset="heading" style={styles.title}>
-						Summary
-					</Text>
-					<Text size="sm">{summary}</Text>
-					<Line style={styles.lineSeparator} />
-					<Text preset="heading" style={styles.title}>
-						You will also like
-					</Text>
+					<View style={styles.summarySection}>
+						<Line />
+
+						<Text preset="heading">Summary</Text>
+						<Text size="sm">{summary}</Text>
+
+						<Line />
+						<Text preset="heading" style={styles.title}>
+							You will also like
+						</Text>
+					</View>
 					<FlatList
 						data={recommendedBookIds}
 						renderItem={renderHorizontalListItem}
@@ -118,6 +120,7 @@ const BookDetailsInfoContainer: FC<BookDetailsInfoContainerProps> = ({
 						showsHorizontalScrollIndicator={false}
 						contentContainerStyle={styles.horizontalList}
 						horizontal
+						scrollEventThrottle={16}
 					/>
 					<Button title="Read now" style={styles.button} />
 				</ScrollView>
@@ -129,12 +132,13 @@ const BookDetailsInfoContainer: FC<BookDetailsInfoContainerProps> = ({
 const styles = StyleSheet.create({
 	container: {
 		flexGrow: 1,
-		paddingHorizontal: 16,
 	},
 	info: {
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-around",
+		paddingHorizontal: 16,
+		paddingBottom: 16,
 	},
 	infoItem: {
 		flex: 1,
@@ -148,8 +152,13 @@ const styles = StyleSheet.create({
 	title: {
 		marginBottom: 10,
 	},
+	summarySection: {
+		rowGap: 16,
+		paddingHorizontal: 16,
+	},
 	horizontalList: {
 		marginBottom: 24,
+		paddingHorizontal: 16,
 	},
 	button: {
 		marginHorizontal: 36,

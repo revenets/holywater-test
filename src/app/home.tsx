@@ -8,13 +8,13 @@ import {
 	SectionListData,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { useRouter } from "expo-router";
 
 import { Divider, Text } from "@app/components";
-import { BooksListItem } from "@app/components/home-screen";
+import { BooksCarousel, BooksListItem } from "@app/components/home-screen";
 import { getBooksIdsGroupedByGenre } from "@app/helpers";
 import { PALETTE } from "@app/enums";
 import { useBooksStore } from "@app/store";
-import { useRouter } from "expo-router";
 
 type SectionAuxData = {
 	title: string;
@@ -63,8 +63,11 @@ export default function HomeScreen() {
 				data={item}
 				renderItem={renderHorizontalListItem}
 				ItemSeparatorComponent={renderHorizontalItemSeparator}
-				showsHorizontalScrollIndicator={false}
+				keyExtractor={(item) => item.toString()}
 				horizontal
+				showsHorizontalScrollIndicator={false}
+				scrollEventThrottle={16}
+				contentContainerStyle={styles.horizontalList}
 			/>
 		);
 	};
@@ -100,6 +103,7 @@ export default function HomeScreen() {
 	return (
 		<View style={styles.container}>
 			<StatusBar hidden />
+			<BooksCarousel />
 			<SectionList<number[], SectionAuxData>
 				sections={sections}
 				renderItem={renderSectionItem}
@@ -116,14 +120,17 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		paddingHorizontal: 16,
 		paddingVertical: 20,
 		rowGap: 40,
 	},
 	sectionHeader: {
 		marginTop: 10,
+		marginLeft: 16,
 	},
 	placeholderText: {
 		marginVertical: 30,
+	},
+	horizontalList: {
+		paddingHorizontal: 16,
 	},
 });

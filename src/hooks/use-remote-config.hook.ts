@@ -12,9 +12,7 @@ export const useRemoteConfig = () => {
 		const loadRemoteConfig = async () => {
 			setLoading(true);
 			try {
-				// Check if cached data exists
 				if (allBooks.length) {
-
 					setLoading(false);
 					return;
 				}

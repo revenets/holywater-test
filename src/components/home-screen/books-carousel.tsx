@@ -1,51 +1,50 @@
-import { router } from "expo-router";
-import { type FC } from "react";
+import React, {
+	useRef,
+	useEffect,
+	useState,
+	useCallback,
+	FC,
+	useMemo,
+} from "react";
 import {
-	Dimensions,
-	ImageBackground,
-	StyleSheet,
-	TouchableOpacity,
 	View,
+	FlatList,
+	Image,
+	TouchableOpacity,
+	StyleSheet,
+	Dimensions,
+	ListRenderItemInfo,
 } from "react-native";
-import { useSharedValue } from "react-native-reanimated";
-import Carousel, {
-	Pagination,
-	CarouselRenderItem,
-} from "react-native-reanimated-carousel";
+import Animated, { ZoomIn, ZoomOut } from "react-native-reanimated";
+import { router } from "expo-router";
 
-import { PALETTE } from "@app/enums/colors";
-import { Text } from "../text";
-import { Book, SliderItem } from "@app/types";
-import { FONT_FAMILY } from "@app/enums";
+import { FONT_FAMILY, PALETTE } from "@app/enums";
 import { useBooksStore } from "@app/store";
+import { SliderItem } from "@app/types";
+import { Text } from "../text";
 
-const DEFAULT_SCREEN_PADDING = 16;
+const SCREEN_WIDTH = Dimensions.get("window").width;
+const AUTO_SCROLL_INTERVAL = 2000;
+const DEFAULT_PADDING = 16;
+const SLIDER_WIDTH = SCREEN_WIDTH - 2 * DEFAULT_PADDING;
 
-const WIDTH = Dimensions.get("window").width;
-const HEIGHT = WIDTH / 2.2;
-const PROGRESS_BAR_SIZE = 7;
-
-type SliderItemExtended = SliderItem & Pick<Book, "author" | "name">;
-
-type BooksCarouselItemProps = {
-	book: SliderItemExtended;
+type BookSliderItemProps = {
+	item: SliderItem;
 	onPress?: () => void;
 };
 
-const BookCarouselItem: FC<BooksCarouselItemProps> = ({ book, onPress }) => {
-	const { author, name, cover, book_id: bookId } = book ?? {};
-
-	if (!cover || !bookId) {
-		return null;
-	}
+const BookSliderItem: FC<BookSliderItemProps> = ({ item, onPress }) => {
+	const { allBooks } = useBooksStore();
+	const bookData = allBooks.find((book) => book.id === item.book_id);
+	const { name, author } = bookData ?? {};
 
 	return (
-		<TouchableOpacity style={styles.cardBookItem} onPress={onPress}>
-			<ImageBackground
-				source={{ uri: cover }}
-				resizeMode="cover"
-				style={StyleSheet.absoluteFillObject}
-			/>
+		<TouchableOpacity
+			style={styles.slide}
+			activeOpacity={0.8}
+			onPress={onPress}
+		>
+			<Image source={{ uri: item.cover }} style={styles.image} />
 			{!!name && !!author && (
 				<View style={styles.cardBookInfoWrapper}>
 					<Text
@@ -66,77 +65,143 @@ const BookCarouselItem: FC<BooksCarouselItemProps> = ({ book, onPress }) => {
 };
 
 const BooksCarousel: FC = () => {
-	const progress = useSharedValue<number>(0);
-	const { allBooks, sliderBooks } = useBooksStore();
+	const flatListRef = useRef<FlatList<SliderItem>>(null);
+	const [currentIndex, setCurrentIndex] = useState<number>(1);
+	const { sliderBooks } = useBooksStore();
 
-	const carouselData: SliderItemExtended[] = sliderBooks.map((item) => {
-		const correspondingBook = allBooks.find(
-			(book) => book.id === item.book_id
-		);
+	const infiniteData = useMemo(
+		() => [
+			sliderBooks[sliderBooks.length - 1],
+			...sliderBooks,
+			sliderBooks[0],
+		],
+		[sliderBooks]
+	);
 
-		return {
-			...item,
-			author: correspondingBook?.author ?? "",
-			name: correspondingBook?.name ?? "",
-		};
-	});
-
-	const handleItemPress = (bookId: number) => {
-		router.navigate({
-			pathname: "/book-details/[bookId]",
-			params: { bookId },
+	const goToNextSlide = useCallback(() => {
+		let nextIndex = currentIndex + 1;
+		flatListRef.current?.scrollToIndex({
+			index: nextIndex,
+			animated: true,
 		});
+		setCurrentIndex(nextIndex);
+	}, [currentIndex]);
+
+	const handleRenderItem = ({ item }: ListRenderItemInfo<SliderItem>) => {
+		const handleItemPress = () => {
+			router.navigate({
+				pathname: "/book-details/[bookId]",
+				params: { bookId: item.book_id },
+			});
+		};
+
+		return <BookSliderItem item={item} onPress={handleItemPress} />;
 	};
 
-	const handleRenderCarouselItem: CarouselRenderItem<SliderItemExtended> = ({
-		item,
-	}) => {
-		return (
-			<BookCarouselItem
-				book={item}
-				onPress={() => handleItemPress(item.book_id)}
-			/>
+	const handleScrollEnd = (event: any) => {
+		let index = Math.round(
+			event.nativeEvent.contentOffset.x / SLIDER_WIDTH
 		);
+		setCurrentIndex(index);
+
+		if (index === infiniteData.length - 1) {
+			flatListRef.current?.scrollToIndex({ index: 1, animated: false });
+			setCurrentIndex(1);
+		}
+
+		if (index === 0) {
+			flatListRef.current?.scrollToIndex({
+				index: infiniteData.length - 2,
+				animated: false,
+			});
+			setCurrentIndex(infiniteData.length - 2);
+		}
 	};
+
+	const activeIndex =
+		(currentIndex - 1 + sliderBooks.length) % sliderBooks.length;
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			goToNextSlide();
+		}, AUTO_SCROLL_INTERVAL);
+
+		return () => clearInterval(interval);
+	}, [goToNextSlide]);
 
 	return (
-		<View style={{ alignItems: "center" }}>
-			<Carousel
-				width={WIDTH}
-				height={HEIGHT}
-				data={carouselData}
-				onProgressChange={progress}
-				renderItem={handleRenderCarouselItem}
-				autoPlay
-				autoPlayInterval={3000}
+		<View style={styles.container}>
+			<FlatList
+				ref={flatListRef}
+				data={infiniteData}
+				horizontal
+				pagingEnabled
+				showsHorizontalScrollIndicator={false}
+				keyExtractor={(_, index) => index.toString()}
+				renderItem={handleRenderItem}
+				initialScrollIndex={1}
+				getItemLayout={(_, index) => ({
+					length: SLIDER_WIDTH,
+					offset: SLIDER_WIDTH * index,
+					index,
+				})}
+				onMomentumScrollEnd={handleScrollEnd}
+				scrollEventThrottle={16}
 			/>
 
-			<Pagination.Basic
-				progress={progress}
-				data={carouselData}
-				dotStyle={{
-					backgroundColor: PALETTE.carbon50,
-					borderRadius: 50,
-				}}
-				activeDotStyle={{
-					backgroundColor: PALETTE.pink100,
-				}}
-				size={PROGRESS_BAR_SIZE}
-				containerStyle={{ gap: 10, marginTop: -2 * PROGRESS_BAR_SIZE }}
-			/>
+			<View style={styles.progressContainer}>
+				{sliderBooks.map((_, index) => (
+					<Animated.View key={index} style={[styles.dot]}>
+						{activeIndex === index ? (
+							<Animated.View
+								entering={ZoomIn}
+								exiting={ZoomOut}
+								style={styles.activeDot}
+							/>
+						) : null}
+					</Animated.View>
+				))}
+			</View>
 		</View>
 	);
 };
 
-export { BooksCarousel };
-
 const styles = StyleSheet.create({
-	cardBookItem: {
-		flex: 1,
-		borderRadius: 16,
+	container: {
+		position: "relative",
+		paddingHorizontal: DEFAULT_PADDING,
+	},
+	slide: {
+		width: SLIDER_WIDTH,
+		height: 200,
 		justifyContent: "center",
+		alignItems: "center",
+	},
+	image: {
+		width: "100%",
+		height: "100%",
+		borderRadius: 10,
+		resizeMode: "cover",
+	},
+	progressContainer: {
+		position: "absolute",
+		bottom: 12,
+		width: SCREEN_WIDTH,
+		flexDirection: "row",
+		justifyContent: "center",
+	},
+	dot: {
+		width: 8,
+		height: 8,
+		borderRadius: 4,
+		backgroundColor: PALETTE.carbon50,
+		marginHorizontal: 5,
 		overflow: "hidden",
-		marginHorizontal: DEFAULT_SCREEN_PADDING,
+	},
+	activeDot: {
+		...StyleSheet.absoluteFillObject,
+		borderRadius: 4,
+		backgroundColor: PALETTE.pink200,
 	},
 	cardBookInfoWrapper: {
 		borderRadius: 16,
@@ -145,7 +210,7 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		position: "absolute",
 		maxWidth: "80%",
-		bottom: 16,
+		bottom: 30,
 		left: 16,
 		padding: 8,
 	},
@@ -153,3 +218,5 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 });
+
+export { BooksCarousel };
